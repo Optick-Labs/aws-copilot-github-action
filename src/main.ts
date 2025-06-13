@@ -51,7 +51,7 @@ async function install(): Promise<void> {
   if (!cliPath) {
     const token = core.getInput('github-token') || process.env.GITHUB_TOKEN
 
-    const downloadPath = await downloadTool(packageUrl, COPILOT_CLI_TOOL_NAME, token)
+    const downloadPath = await downloadTool(packageUrl, COPILOT_CLI_TOOL_NAME, `Bearer ${token}`)
     chmodSync(downloadPath, '755')
     cliPath = await cacheFile(
       downloadPath,
