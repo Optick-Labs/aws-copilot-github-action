@@ -22,7 +22,7 @@ inputs:
   tag:
     required: false
     description: "ecr tag name"
-  github-token
+  github-token:
     required: false
     description: "github token for higher rate limits in downloading releases"
   resource-tags:
