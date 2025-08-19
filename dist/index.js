@@ -89,7 +89,7 @@ function install() {
         let cliPath = (0, tool_cache_1.find)(COPILOT_CLI_TOOL_NAME, version);
         if (!cliPath) {
             const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
-            const downloadPath = yield (0, tool_cache_1.downloadTool)(packageUrl, COPILOT_CLI_TOOL_NAME, `Bearer ${token}`);
+            const downloadPath = yield (0, tool_cache_1.downloadTool)(packageUrl, COPILOT_CLI_TOOL_NAME, `token ${token}`);
             (0, fs_1.chmodSync)(downloadPath, '755');
             cliPath = yield (0, tool_cache_1.cacheFile)(downloadPath, 'copilot', COPILOT_CLI_TOOL_NAME, version);
         }
@@ -100,7 +100,7 @@ function install() {
 }
 function getLatestVersion() {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = process.env['GITHUB_TOKEN'];
+        const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
         const handlers = [];
         if (token) {
             core.info('Using GITHUB_TOKEN to get latest version');
